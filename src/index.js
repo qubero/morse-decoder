@@ -38,7 +38,21 @@ const MORSE_TABLE = {
 };
 
 function decode(expr) {
-    // write your solution here
+    const SIZE = 10,
+          DOT = '.',
+          DASH = '-';
+
+    let result = '';
+
+    for (let i = 0; i < expr.length; i += SIZE) {
+        const symbol = expr.slice(i, i + SIZE);
+
+        result += symbol.startsWith('*')
+            ? ` `
+            : MORSE_TABLE[String(+symbol).replace(/10/g, DOT).replace(/11/g, DASH)];
+    }
+
+    return result;
 }
 
 module.exports = {
